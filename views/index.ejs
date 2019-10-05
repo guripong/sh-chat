@@ -4,25 +4,23 @@
 <head>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
-  <title><%= title %></title>
+  <title> CHATTY CHAT CHAT</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src='/javascripts/socket.io.js'></script>
 </head>
 
 <body>
-  <h1><%= title %></h1>
-  <p>Welcome to <%= title %></p>
-  <input id="tempidvalue"  type="text" value="" placeholder="아이디를 입력하세요">
-  <input id="joinroombtn" type="button" value="방들어가기버튼">
-
-  <div id="totalmsg" style="height:500px;width:100%; border:1px solid black;">
-
-  </div>
-
+  <img id='SHTALK' src='/images/SHTALK.PNG'>
+  <style>
+    img { display: block; margin: 0px auto; position: relative;}
+  </style>
+  <input id="tempidvalue"  type="text" value="" placeholder="이름: ">
+  <input id="joinroombtn" type="button" value="Join Chat">
 </body>
 
 
 <script>
+  /*
   var roomname = "a1"; //방이름
   var id = "1234"; //유저아이디
 
@@ -44,7 +42,7 @@
   socket.on('joinRoom', (roomname, id, msg) => {
     console.log(msg);
     $('#totalmsg').append('<div>'+msg+'</div>');
-  });
+  });*/
 </script>
 
 </html>
