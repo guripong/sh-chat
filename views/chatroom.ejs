@@ -56,20 +56,18 @@
       </div>
     
     </div>
-    <div style="display:flex;">
+   
+      <div style="display:flex; width:80%; padding-left: 10%; height: 30px;">
 
-      <div style="background-color:red; width:100%;">
-        asf
+        <div style="background-color:red; width:20%;">
+          <%=show_user%>
+        </div>
+        <div style="background-color:blue; width:80%;">
+          <input id="input_chat"type="text" value="" style="width:100%;">
+        </div>
       </div>
-      <div style="background-color:blue; width:100%;">
-        asfasf
-      </div>
-      <div style="background-color:green; width:100%;">
-        asfasf
-      </div>
-    </div>
-
-  </div>
+     
+  </div> <!--div2-->
 
   <div id="div3">
         dgsafag
@@ -96,8 +94,18 @@
       socket.emit('joinRoom', roomname, id, "허락해줘");//방 들어갈게
 
     });
-    ///프론트에서 백앤드로 보내는메시지
+    ///프론트에서 백앤드로 입장보내는메시지
+    
+    $('#input_chat').keypress(function(e){
+      if(e.key=='Enter'){
+        var getmsg = $('#input_chat').val();
+      //alert(getmsg);
+      $('#input_chat').val("");
+      socket.emit('sendmsg_backend', roomname, id, getmsg);//방 들어갈게
+      }
 
+    });
+    //프론트에서 백엔드로보내는 채팅메세지
 
     console.log("asfsaf"+window.location.origin);
     
@@ -111,9 +119,15 @@
       console.log(msg);
       $('#totalmsg').append('<div>' + msg + '</div>');
     });
+
+    socket.on('sendmsg_frontend', (roomname, id, msg) => {
+      console.log(msg);
+      $('#totalmsg').append('<div>'+ id+": "+msg + '</div>');
+    });
+
     }
 
-  </script>
+    </script>
 </body>
 
 

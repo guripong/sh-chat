@@ -47,6 +47,11 @@ io.on('connection', function (socket) {
     });
 
   });
+
+  socket.on('sendmsg_backend', function (roomname, id, msg){
+    console.log(msg);  
+    io.to(roomname).emit('sendmsg_frontend', roomname, id, msg);
+  });
 //////////////////////////////////////
 
 
