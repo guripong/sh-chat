@@ -7,19 +7,26 @@
   <title> CHATTY CHAT CHAT</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src='/javascripts/socket.io.js'></script>
+  <style>
+      img { display: block; margin: 0px auto; position: relative;}
+    </style>
 </head>
 
 <body>
   <img id='SHTALK' src='/images/SHTALK.PNG'>
-  <style>
-    img { display: block; margin: 0px auto; position: relative;}
-  </style>
-  <input id="tempidvalue"  type="text" value="" placeholder="이름: ">
-  <input id="joinroombtn" type="button" value="Join Chat">
+
+
+  <form action="/chatroom" method="post">
+      
+      <input id="tempidvalue" name="username" type="text" value="" placeholder="이름: ">
+      <button id="joinroombtn" type="summit">JOIN</button>
+    </form>
+
 </body>
 
 
 <script>
+
   /*
   var roomname = "a1"; //방이름
   var id = "1234"; //유저아이디

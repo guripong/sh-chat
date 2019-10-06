@@ -11,33 +11,46 @@
 
 <body>
 
+  gggggggggggg
+  <button id="test">test</button>
+  <div id="totalmsg">
+    ghcggnf
+  </div>
+    <script>
+    var id = '<%=show_user%>';
+    var roomname = "a1"; //방이름
+    var socket = io(window.location.origin);//백앤드소켓주소입력
+    //console.log(socket);
+    console.log("document ready");
+    
+    $('#test').click(function(){
+      console.log("asfasf");
+      socket.emit('joinRoom', roomname, id, "허락해줘");//방 들어갈게
+
+    });
+    ///프론트에서 백앤드로 보내는메시지
+
+
+    console.log("asfsaf"+window.location.origin);
+    
+    //var socket = io("http://34.85.15.240:8989");
+
+
+
+
+    //백앤드에서 프론트로 보낸 메시지를 받는곳
+    socket.on('joinRoom', (roomname, id, msg) => {
+      console.log(msg);
+      $('#totalmsg').append('<div>' + msg + '</div>');
+    });
+    window.onload=function () {
+     
+    }
+
+  </script>
 </body>
 
 
-<script>
-        /*
-        var roomname = "a1"; //방이름
-        var id = "1234"; //유저아이디
-      
-        
-        $('#joinroombtn').click(function(){
-          id =   $('#tempidvalue').val();
-            ///프론트에서 백앤드로 보내는메시지
-          socket.emit('joinRoom', roomname, id, "허락해줘");//방 들어갈게
-        });
-      
-      
-       // var socket = io("http://localhost:8989");//백앤드소켓주소입력
-       var socket = io("http://34.85.15.240:8989");
-      
-      
-      
-      
-        //백앤드에서 프론트로 보낸 메시지를 받는곳
-        socket.on('joinRoom', (roomname, id, msg) => {
-          console.log(msg);
-          $('#totalmsg').append('<div>'+msg+'</div>');
-        });*/
-      </script>
+
 
 </html>

@@ -106,12 +106,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-const port =3389;
-const myip ="0.0.0.0";
 
-app.listen(port,myip, function(){
-   console.log('listening'+port+' port!!!');      
-});
 
 
 module.exports = app;
