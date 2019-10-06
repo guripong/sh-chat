@@ -7,15 +7,81 @@
   <title> CHATTY CHAT CHAT</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <script src='/javascripts/socket.io.js'></script>
+  <style>
+   html,body{
+     height:100%;
+     padding:0px;
+     margin:0px;
+   }
+   body{
+     height:100%;
+     width:100%;
+     display:table;
+   }
+   #div1{
+     display:table-row;
+     height:10%;
+     background-color:yellow;
+     text-align:center;
+   }
+   #div2{
+    display:table-row;
+    height:80%;
+ /*    background-color:blue;*/
+     text-align:center;
+
+   }
+   #div3{
+    display:table-row;
+    height:10%;
+     background-color:green;
+   }
+  </style>
 </head>
 
 <body>
+  <div id="div1">
+    
+    <div style="font-size:20px;">세헌채팅방이에용</div>
 
-  gggggggggggg
-  <button id="test">test</button>
-  <div id="totalmsg">
-    ghcggnf
+    <button id="test">방들어가기</button>
+  
   </div>
+
+  <div id="div2">
+    <div style="display:inline-block;  border: 1px solid red; height:400px; width:80%;margin-top:1%;
+      overflow-y:scroll;">
+
+      <div id="totalmsg" style="text-align:left; padding-left:10px;">
+      </div>
+    
+    </div>
+    <div style="display:flex;">
+
+      <div style="background-color:red; width:100%;">
+        asf
+      </div>
+      <div style="background-color:blue; width:100%;">
+        asfasf
+      </div>
+      <div style="background-color:green; width:100%;">
+        asfasf
+      </div>
+    </div>
+
+  </div>
+
+  <div id="div3">
+        dgsafag
+  </div>
+  
+ 
+
+
+
+
+
+
     <script>
     var id = '<%=show_user%>';
     var roomname = "a1"; //방이름
