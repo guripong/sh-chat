@@ -55,31 +55,53 @@
 
   <div id="div2">
 
-    <div style="display: flex; border:1px solid chartreuse; width: 80%; padding-left: 10%;">
-      <div style="display:inline-block;  border: 1px solid red; height:400px; width:80%;margin-top:1%;
-      overflow-y:scroll;">
 
-        <div id="totalmsg" style="text-align:left; padding-left:10px; border: 1px solid blue;">
+    <div style="display:block; width:100%; height:100%; background-color:none;">
+
+
+      <div style="width:100%; height:90%; background-color:white;     align-items: center;
+      justify-content: center; display:flex;">
+
+        <div style="width:80%; height:80%; display:block; outline:3px solid orange;">
+          
+          <div style="display:flex; height:90%; width: 100%; ">
+            <div style="display:inline-block; background-color:green; height:100%; width:80%;
+              overflow-y:scroll;">
+
+              <div id="totalmsg" style="text-align:left; padding-left:10px; border: 1px solid blue;">
+              </div>
+
+            </div>
+            <div id="member_list" style="display: inline-block; width: 20%; background-color: chocolate; ">
+            </div>
+
+          </div>
+
+          
+          <div style="display:flex; width:100%; height: 10%; outline:3px solid red;">
+
+            <div style="background-color:red; width:20%;">
+              <%=show_user%>
+            </div>
+            <div style="background-color:blue; width:80%;">
+              <input id="input_chat" type="text" value="" style="width:100%;">
+            </div>
+          </div>
+          
         </div>
 
       </div>
-      <div id="member_list" style="display: inline-block; width: 20%; background-color: chocolate; margin-top:1%;">
-        
+
+
+      <div style="width:100%; height:10%; background-color:red;">
+        <!--
+
+        -->
       </div>
+
     </div>
-
-
-    <div style="display:flex; width:80%; padding-left: 10%; height: 30px;">
-
-      <div style="background-color:red; width:20%;">
-        <%=show_user%>
-      </div>
-      <div style="background-color:blue; width:80%;">
-        <input id="input_chat" type="text" value="" style="width:100%;">
-      </div>
-    </div>
-
   </div>
+
   <!--div2-->
 
   <div id="div3">
@@ -111,8 +133,8 @@
       $('#leave').click(function () {
         console.log("asfasf");
         socket.emit('leaveRoom', roomname, id, "방 나가게 허락해줘");//방 나갈게
-        
-        window.location.href="/";
+
+        window.location.href = "/";
       });
 
       ///프론트에서 백앤드로 입장보내는메시지
@@ -141,34 +163,36 @@
         $('#totalmsg').append('<div>' + msg + '</div>');
       });
 
-      socket.on('add_member', (roomname, id, msg) => {
-        console.log(msg);
-        console.log("멤버리스트: "+member_list); 
-        ////////
-        if(member_list.length >=1){
-        const idx = member_list.indexOf(id);
+      socket.on('add_member', (roomname, id) => {
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-        console.log("아아"+idx);
+        console.log("멤버리스트: " + member_list);
+        if (member_list.length >= 1) {
+          const idx = member_list.indexOf(id);
 
-        if(idx>-1){
-          //이미있는정보니까 추가안함
-        
+          console.log("아아" + idx);
+
+          if (idx > -1) {
+            //이미있는정보니까 추가안함
+            console.log("이미 맴버로 있기때문에 추가 안할게 아이디는:" + id);
+          }
+          else {
+
+            console.log("맴버로 없기때문에 추가 할게 아이디는:" + id);
+            member_list.push(id);
+            $('#member_list').append('<div>' + id + '</div>');
+            //없는정보니까 추가를 함
+          }
         }
-        else{
+        else {
+          console.log("맴버로 없기때문에 추가 할게 아이디는:" + id);
+
           member_list.push(id);
-        
 
-          $('#member_list').append('<div>' + msg + '</div>');
-          //없는정보니까 추가를 함
+          $('#member_list').append('<div>' + id + '</div>');
+
         }
-      }
-      else{
-        member_list.push(id);
-        
-          $('#member_list').append('<div>' + msg + '</div>');
 
-      }
-       
       });
 
       socket.on('leaveRoom', (roomname, id, msg) => {
@@ -182,7 +206,7 @@
       });
 
     }
-var member_list= [];
+    var member_list = [];
   </script>
 </body>
 

@@ -10,28 +10,11 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //http모듈에서 익스프레스 서버를사용하고
 var http = require('http').Server(app);
 // io 모듈에서 http모듈을 사용할게
 var io = require('socket.io')(http);
+
 
 var member_list = [];
 ////////////io가 연결이 되었을경우 돌아가는 함수들 지정
@@ -49,7 +32,6 @@ io.on('connection', function (socket) {
       //멤버중복X
       member_list.push(id);
 
-
       console.log("총멤버 " + member_list);
       //방을 만들어
       socket.join(roomname, function () {
@@ -58,7 +40,7 @@ io.on('connection', function (socket) {
         io.to(roomname).emit('joinRoom', roomname, id, id + "가 " + roomname + "방에 들어왔습니다.");
         for (var i = 0; i < member_list.length; i++) {
           console.log("방맴버를보냄")
-          io.to(roomname).emit('add_member', roomname, id, member_list[i]);
+          io.to(roomname).emit('add_member', roomname, member_list[i]);
         }
       });
 
